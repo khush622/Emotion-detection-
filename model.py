@@ -1,5 +1,9 @@
+import tensorflow as tf
+from tensorflow.keras.layers import Input, Dropout, Conv2D, MaxPooling2D, BatchNormalization, Flatten, Dense
+from tensorflow.keras.models import Model
+
 dr = 0.6
-X_input =  tf.keras.layers.Input(X_train.shape[1:])
+X_input =  Input(X_train.shape[1:])
 X       =  Dropout(.2)(X_input)
 X       =  Conv2D(50,(5,5),activation = 'relu',kernel_initializer=tf.keras.initializers.HeNormal())(X_input)
 X       =  BatchNormalization()(X)
@@ -28,7 +32,7 @@ X       =  BatchNormalization()(X)
 X       =  Dropout(dr)(X)
 X       =  Conv2D(800,(2,2),activation = 'relu',kernel_initializer=tf.keras.initializers.HeNormal())(X)
 X       =  BatchNormalization()(X)
-X       =  tf.keras.layers.Flatten()(X)
+X       =  Flatten()(X)
 X       =  Dense(200,activation = 'relu')(X)
 X       =  Dense(6,activation = 'softmax')(X)
 
